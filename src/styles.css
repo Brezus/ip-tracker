@@ -74,7 +74,7 @@ select {
 }
 
 .header {
-  height: 200px;
+  height: 250px;
   padding-top: 5em;
   position: relative;
   width: 100%;
@@ -107,8 +107,8 @@ button {
 }
 
 .info-display {
-  height: 300px;
-  background: red;
+  height: 200px;
+  background: white;
   position: absolute;
   left: 50%;
   top: 80%;
