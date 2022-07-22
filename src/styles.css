@@ -116,16 +116,18 @@ button {
   transform: translate(-50%);
   border-radius: 10px;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
   padding: 1em 4em;
   z-index: 1000;
+  border: 1px solid black;
 }
 .ip-info {
   text-align: center;
+  width: 25%;
 }
-.ip-info p {
+.ip-info h2 {
   text-transform: uppercase;
 }
 .leaflet-container {
