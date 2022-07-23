@@ -1,21 +1,21 @@
 const searchBox = document.getElementById("ipTrackr")
 const submitButton = document.getElementById("submit")
 const display = document.querySelector(".info-display")
-let searchUrl = ""
+let domainSearch = `https://geo.ipify.org/api/v2/country,city?apiKey=at_oNvwKc6F4I37eCbKER4WSoYriVKGY&domain=`
+let ipSearch = `https://geo.ipify.org/api/v2/country,city?apiKey=at_oNvwKc6F4I37eCbKER4WSoYriVKGY&ipAddress=`
+let searchUrl =
+  "https://geo.ipify.org/api/v2/country,city?apiKey=at_oNvwKc6F4I37eCbKER4WSoYriVKGY&ipAddress=192.212.174.101"
 
+searchBox.addEventListener("input", setSearchUrl)
+document.addEventListener("DOMContentLoaded", fetchIpData)
 function setSearchUrl() {
   const searchStr = searchBox.value.split(".").join("")
-  console.log(searchStr)
-  // return isNaN(searchStr)
+  searchUrl = !isNaN(searchStr)
+    ? ipSearch + searchBox.value
+    : domainSearch + searchBox.value
 }
-// make search url a global let variable
-// add listener to input searchBox
-// make function to check if value of searchBox has any letters
-// if it does modify search url
 
 function fetchIpData() {
-  const ipAddress = searchBox.value
-  searchUrl = `https://geo.ipify.org/api/v2/country,city?apiKey=at_oNvwKc6F4I37eCbKER4WSoYriVKGY&ipAddress=${ipAddress}`
   fetch(searchUrl)
     .then((res) => {
       if (res.ok) {
@@ -28,6 +28,7 @@ function fetchIpData() {
 }
 
 function displayIpInfo(ipData) {
+  console.log(ipData)
   const locationInfo = `${ipData.location.region}, ${ipData.location.country} ${
     ipData.location.postalCode ? ipData.location.postalCode : "N/A"
   }`
@@ -41,7 +42,7 @@ function displayIpInfo(ipData) {
   const lat = ipData.location.lat
   const lng = ipData.location.lng
   map.flyTo(new L.LatLng(lat, lng), 8)
-  marker = L.marker([lat, lng]).addTo(map)
+  marker = L.marker([lat, lng], { icon: blackIcon }).addTo(map)
   marker.bindPopup(`<b> you are ${ipData.location.region}</b>`)
 }
 function getDisplayDivInnerHtml(ipInfo) {
@@ -58,12 +59,18 @@ function getDisplayDivInnerHtml(ipInfo) {
 }
 submitButton.addEventListener("click", fetchIpData)
 
-let map = L.map("map").setView([51.505, -0.09], 13)
+let map = L.map("map").setView([34.04915, -118.09462], 8)
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
   attribution: "© OpenStreetMap",
 }).addTo(map)
-let marker = L.marker([51.5, -0.09]).addTo(map)
+let blackIcon = L.icon({
+  iconUrl: "images/icon-location.svg",
+  iconSize: [38, 50], // size of the icon
+  iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+  popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+})
+let marker = L.marker([34.04915, -118.09462], { icon: blackIcon }).addTo(map)
 marker.bindPopup(
   "<b>Bungee Gum posses both the properties of rubber and gum</b>"
 )
