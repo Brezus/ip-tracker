@@ -1,12 +1,21 @@
 const searchBox = document.getElementById("ipTrackr")
 const submitButton = document.getElementById("submit")
 const display = document.querySelector(".info-display")
-let ipAddress = ""
-const searchUrl = `https://geo.ipify.org/api/v2/country?apiKey=at_oNvwKc6F4I37eCbKER4WSoYriVKGY&ipAddress=${ipAddress}`
+let searchUrl = ""
+
+function setSearchUrl() {
+  const searchStr = searchBox.value.split(".").join("")
+  console.log(searchStr)
+  // return isNaN(searchStr)
+}
+// make search url a global let variable
+// add listener to input searchBox
+// make function to check if value of searchBox has any letters
+// if it does modify search url
 
 function fetchIpData() {
-  ipAddress = searchBox.value
-  console.log(searchBox.value)
+  const ipAddress = searchBox.value
+  searchUrl = `https://geo.ipify.org/api/v2/country,city?apiKey=at_oNvwKc6F4I37eCbKER4WSoYriVKGY&ipAddress=${ipAddress}`
   fetch(searchUrl)
     .then((res) => {
       if (res.ok) {
@@ -18,67 +27,43 @@ function fetchIpData() {
     .catch((error) => console.log(error))
 }
 
-// fetchIpData()
-
-// get important parts from data
-// get search input
-// get vale of search input on click
-// save value in ipAddress variable call fetchIpData
-// make function display
-// display returns div with information retrned from data
-// get ip address, location, timezone, isp
-
 function displayIpInfo(ipData) {
-  const locationInfo = [
-    ipData.location.region,
-    ipData.location.country,
-    ipData.location.postalCode,
-  ]
-  const categories = [
+  const locationInfo = `${ipData.location.region}, ${ipData.location.country} ${
+    ipData.location.postalCode ? ipData.location.postalCode : "N/A"
+  }`
+  const ipInfo = [
     { title: "ip address", info: ipData.ip },
     { title: "location", info: locationInfo },
-    { title: "timezone", info: ipData.location.timezone },
+    { title: "timezone", info: `UTC${ipData.location.timezone}` },
     { title: "isp", info: ipData.isp },
   ]
-  //   const info = {
-  //     ipAd: ipData.ip,
-  //     location: {
-  //       region: ipData.location.region,
-  //       country: ipData.location.country,
-  //       postalCode: ipData.location.postalCode,
-  //       coords: { lat: ipData.location.lat, lng: ipData.location.lng },
-  //     },
-  //     timezone: ipData.location.timezone,
-  //     isp: ipData.isp,
-  //   }
-  display.innerHTML = getDisplayDivInnerHtml(info)
+  display.innerHTML = getDisplayDivInnerHtml(ipInfo).join("")
+  const lat = ipData.location.lat
+  const lng = ipData.location.lng
+  map.flyTo(new L.LatLng(lat, lng), 8)
+  marker = L.marker([lat, lng]).addTo(map)
+  marker.bindPopup(`<b> you are ${ipData.location.region}</b>`)
 }
-function getDisplayDivInnerHtml(info) {
-  const displayDivInnerHtml = `
-    <div class="ip-info">
-      <h2>ip address</h2>
-      <p class="location">
-        ${info.ipAd}
-      </p>
-    </div>
-    <div class="ip-info">
-      <h2>location</h2>
-      <p class="location">
-        ${info.location.region}, ${info.location.country} ${info.location.postalCode}
-      </p>
-    </div>
-    <div class="ip-info">
-      <h2>timezone</h2>
-      <p class="location">
-        ${info.timezone}
-      </p>
-    </div>
-    <div class="ip-info">
-      <h2>location</h2>
-      <p class="location">
-        ${info.isp}
-      </p>
-    </div>`
+function getDisplayDivInnerHtml(ipInfo) {
+  const displayDivInnerHtml = ipInfo.map((data) => {
+    return `
+        <div class="ip-info">
+            <h2>${data.title}</h2>
+            <p class="location">
+                ${data.info}
+            </p>
+        </div>`
+  })
   return displayDivInnerHtml
 }
 submitButton.addEventListener("click", fetchIpData)
+
+let map = L.map("map").setView([51.505, -0.09], 13)
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  maxZoom: 19,
+  attribution: "© OpenStreetMap",
+}).addTo(map)
+let marker = L.marker([51.5, -0.09]).addTo(map)
+marker.bindPopup(
+  "<b>Bungee Gum posses both the properties of rubber and gum</b>"
+)
