@@ -66,9 +66,9 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 }).addTo(map)
 let blackIcon = L.icon({
   iconUrl: "images/icon-location.svg",
-  iconSize: [38, 50], // size of the icon
-  iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-  popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+  iconSize: [38, 50],
+  iconAnchor: [32, 24],
+  popupAnchor: [-3, -76],
 })
 let marker = L.marker([34.04915, -118.09462], { icon: blackIcon }).addTo(map)
 marker.bindPopup(
