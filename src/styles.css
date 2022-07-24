@@ -1,3 +1,9 @@
+:root {
+  --ff: "Rubik", sans-serif;
+  --Very-Dark-Gray: hsl(0, 0%, 17%);
+  --Dark-Gray: hsl(0, 0%, 59%);
+  --Font-size: 18px;
+}
 /* Box sizing rules */
 *,
 *::before,
@@ -72,29 +78,46 @@ select {
     scroll-behavior: auto !important;
   }
 }
-
+/* ========================== typography========================== */
+.app {
+  font-family: var(--ff);
+}
 .header {
-  height: 30vh;
+  height: 35vh;
   padding-top: 5em;
   position: relative;
   width: 100%;
   background-image: url(../images/pattern-bg.png);
 }
+.header::before {
+  content: "IP Address Tracker";
+  position: absolute;
+  left: 50%;
+  top: 15%;
+  width: 70%;
+  transform: translate(-50%);
+  text-align: center;
+  color: white;
+  font-weight: 500;
+  /* font-family: var(--ff); */
+  font-size: 1.5rem;
+}
 .header-wrapper {
   position: absolute;
   left: 50%;
-  top: 40%;
+  top: 35%;
   width: 70%;
   transform: translate(-50%);
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 2em;
   z-index: 1000;
+  text-align: center;
 }
 
 .input-cont {
-  height: 40px;
-  width: 70%;
+  height: 45px;
+  width: 60%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -114,40 +137,58 @@ button {
   border-bottom-left-radius: 10px;
   border: none;
   width: 100%;
+  color: var(--Very-Dark-Gray);
 }
 
 .info-display,
 .info-display-error {
-  height: 200px;
   background: white;
   border-radius: 10px;
   display: flex;
   /* flex-direction: column; */
   justify-content: center;
-  align-items: center;
+  align-items: start;
+  text-align: left;
   padding: 1em 4em;
   z-index: 1000;
+  min-height: 150px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+.info-display {
+  gap: 1em;
 }
 .info-display-error {
   padding: 0;
-  background-image: url("../images/earth.gif");
+  background-image: url("../images/earth2.gif");
   background-position: center;
-  background-size: cover;
+  background-size: contain;
   display: block;
+  color: white;
 }
 .ip-info {
-  text-align: center;
   width: 25%;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 .ip-info h2 {
   text-transform: uppercase;
+  font-size: 1rem;
+  color: var(--Dark-Gray);
+  font-weight: 400;
+}
+.location {
+  color: var(--Very-Dark-Gray);
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 .leaflet-container {
   width: 100%;
   height: 30vh;
 }
 #map {
-  height: 70vh;
+  height: 65vh;
   width: 100%;
 }
 #submit {
@@ -158,4 +199,9 @@ button {
 .error-div {
   height: 100%;
   width: 100%;
+}
+@media screen and (max-width: 700px) {
+  body {
+    background-color: black;
+  }
 }

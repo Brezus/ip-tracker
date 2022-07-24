@@ -2,10 +2,10 @@ const searchBox = document.getElementById("ipTrackr")
 const submitButton = document.getElementById("submit")
 const display = document.querySelector(".info-display")
 const zoomLevel = 14
-let domainSearch = `https://geo.ipify.org/api/v2/country,city?apiKey=at_oNvwKc6F4I37eCbKER4WSoYriVKGY&domain=`
-let ipSearch = `https://geo.ipify.org/api/v2/country,city?apiKey=at_oNvwKc6F4I37eCbKER4WSoYriVKGY&ipAddress=`
+let domainSearch = `https://geo.ipify.org/api/v2/country,city?apiKey=at_tGIM4mr6wNkpg4sO5zJAE7WJyI8mF&domain=`
+let ipSearch = `https://geo.ipify.org/api/v2/country,city?apiKey=at_tGIM4mr6wNkpg4sO5zJAE7WJyI8mF&ipAddress=`
 let searchUrl =
-  "https://geo.ipify.org/api/v2/country,city?apiKey=at_oNvwKc6F4I37eCbKER4WSoYriVKGY&ipAddress=192.212.174.101"
+  "https://geo.ipify.org/api/v2/country,city?apiKey=at_tGIM4mr6wNkpg4sO5zJAE7WJyI8mF&ipAddress=192.212.174.101"
 
 searchBox.addEventListener("keydown", (e) => {
   setSearchUrl()
@@ -27,7 +27,7 @@ function setSearchUrl() {
 }
 
 function handleError() {
-  const errorMsg = `<p>couldnt find that search</p>`
+  const errorMsg = `<p>could not load</p>`
   display.className = "info-display-error"
   display.innerHTML = errorMsg
 }
@@ -58,6 +58,7 @@ function displayIpInfo(ipData) {
   ]
   display.className = "info-display"
   display.innerHTML = getDisplayDivInnerHtml(ipInfo).join("")
+  console.log(getDisplayDivInnerHtml(ipInfo).join(""))
   const lat = ipData.location.lat
   const lng = ipData.location.lng
   map.flyTo(new L.LatLng(lat, lng), zoomLevel)
@@ -68,7 +69,7 @@ function getDisplayDivInnerHtml(ipInfo) {
   const displayDivInnerHtml = ipInfo.map((data) => {
     return `
         <div class="ip-info">
-            <h2>${data.title}</h2>
+            <h2 class="ip-info-title">${data.title}</h2>
             <p class="location">
                 ${data.info}
             </p>
@@ -89,7 +90,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 let blackIcon = L.icon({
   iconUrl: "images/icon-location.svg",
   iconSize: [30, 40],
-  iconAnchor: [32, 14],
-  popupAnchor: [-17, -5],
+  iconAnchor: [32, -20],
+  popupAnchor: [-17, 10],
 })
 let marker = L.marker([34.04915, -118.09462], { icon: blackIcon }).addTo(map)
