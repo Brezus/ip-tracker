@@ -114,13 +114,12 @@ button {
   border-bottom-left-radius: 10px;
   border: none;
   width: 100%;
-  border: 1px solid black;
 }
 
-.info-display {
+.info-display,
+.info-display-error {
   height: 200px;
   background: white;
-
   border-radius: 10px;
   display: flex;
   /* flex-direction: column; */
@@ -128,7 +127,13 @@ button {
   align-items: center;
   padding: 1em 4em;
   z-index: 1000;
-  border: 1px solid black;
+}
+.info-display-error {
+  padding: 0;
+  background-image: url("../images/earth.gif");
+  background-position: center;
+  background-size: cover;
+  display: block;
 }
 .ip-info {
   text-align: center;
@@ -143,5 +148,14 @@ button {
 }
 #map {
   height: 70vh;
+  width: 100%;
+}
+#submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.error-div {
+  height: 100%;
   width: 100%;
 }
