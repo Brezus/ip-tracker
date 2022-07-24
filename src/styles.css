@@ -89,24 +89,12 @@ select {
   width: 100%;
   background-image: url(../images/pattern-bg.png);
 }
-.header::before {
-  content: "IP Address Tracker";
-  position: absolute;
-  left: 50%;
-  top: 15%;
-  width: 70%;
-  transform: translate(-50%);
-  text-align: center;
-  color: white;
-  font-weight: 500;
-  /* font-family: var(--ff); */
-  font-size: 1.5rem;
-}
+
 .header-wrapper {
   position: absolute;
   left: 50%;
   top: 35%;
-  width: 70%;
+  width: 80%;
   transform: translate(-50%);
   display: flex;
   flex-direction: column;
@@ -121,6 +109,20 @@ select {
   margin: 0 auto;
   display: flex;
   justify-content: center;
+  position: relative;
+}
+.input-cont::before {
+  content: "IP Address Tracker";
+  position: absolute;
+  left: 50%;
+  top: -100%;
+  width: 70%;
+  transform: translate(-50%);
+  text-align: center;
+  color: white;
+  font-weight: 700;
+  /* font-family: var(--ff); */
+  font-size: 1.5rem;
 }
 button {
   background-color: black;
@@ -147,7 +149,7 @@ button {
   display: flex;
   /* flex-direction: column; */
   justify-content: center;
-  align-items: start;
+  align-items: center;
   text-align: left;
   padding: 1em 4em;
   z-index: 1000;
@@ -171,16 +173,31 @@ button {
   display: flex;
   flex-direction: column;
   gap: 1em;
+  position: relative;
 }
-.ip-info h2 {
+.ip-info::before {
+  content: "";
+  position: absolute;
+  left: 96%;
+  top: 8px;
+  height: 80%;
+  width: 1px;
+  background-color: var(--Dark-Gray);
+  opacity: 0.5;
+}
+.ip-info:last-of-type::before {
+  opacity: 0;
+}
+.ip-info-title {
   text-transform: uppercase;
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: var(--Dark-Gray);
-  font-weight: 400;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 .location {
   color: var(--Very-Dark-Gray);
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 700;
 }
 .leaflet-container {
@@ -200,8 +217,19 @@ button {
   height: 100%;
   width: 100%;
 }
-@media screen and (max-width: 700px) {
-  body {
-    background-color: black;
+@media screen and (max-width: 865px) {
+  .info-display {
+    flex-direction: column;
+  }
+  .input-cont {
+    width: 100%;
+  }
+  .ip-info {
+    text-align: center;
+    width: 100%;
+  }
+  .ip-info::before {
+    opacity: 0;
+    display: none;
   }
 }

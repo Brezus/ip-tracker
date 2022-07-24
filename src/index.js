@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
   searchBox.value = ""
   searchBox.focus()
   fetchIpData()
-  console.log("loaded")
 })
 function setSearchUrl() {
   const searchStr = searchBox.value.split(".").join("")
@@ -89,7 +88,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 }).addTo(map)
 let blackIcon = L.icon({
   iconUrl: "images/icon-location.svg",
-  iconSize: [30, 40],
+  iconSize: [45, 50],
   iconAnchor: [32, -20],
   popupAnchor: [-17, 10],
 })
