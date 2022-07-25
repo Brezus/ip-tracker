@@ -7,6 +7,8 @@ let ipSearch = `https://geo.ipify.org/api/v2/country,city?apiKey=at_tGIM4mr6wNkp
 let searchUrl =
   "https://geo.ipify.org/api/v2/country,city?apiKey=at_tGIM4mr6wNkpg4sO5zJAE7WJyI8mF&ipAddress=192.212.174.101"
 
+// make search request when press go on mobile device
+// remove zoom controls when on mobile view
 searchBox.addEventListener("keydown", (e) => {
   setSearchUrl()
   if (e.code === "Enter") {
@@ -81,7 +83,10 @@ submitButton.addEventListener("click", () => {
   searchBox.value = ""
 })
 
-let map = L.map("map").setView([34.04915, -118.09462], zoomLevel)
+let map = L.map("map", { zoomControl: false }).setView(
+  [34.04915, -118.09462],
+  zoomLevel
+)
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
   attribution: "© OpenStreetMap",
