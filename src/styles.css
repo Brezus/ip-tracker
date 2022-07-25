@@ -170,6 +170,11 @@ button {
   display: block;
   color: white;
 }
+.info-display-error p {
+  font-size: 2rem;
+  text-transform: uppercase;
+  text-align: center;
+}
 .ip-info {
   width: 25%;
   display: flex;
