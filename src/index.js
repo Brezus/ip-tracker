@@ -7,11 +7,12 @@ let ipSearch = `https://geo.ipify.org/api/v2/country,city?apiKey=at_tGIM4mr6wNkp
 let searchUrl =
   "https://geo.ipify.org/api/v2/country,city?apiKey=at_tGIM4mr6wNkpg4sO5zJAE7WJyI8mF&ipAddress=192.212.174.101"
 
-// make search request when press go on mobile device
-// remove zoom controls when on mobile view
 searchBox.addEventListener("keydown", (e) => {
   setSearchUrl()
   if (e.code === "Enter") {
+    fetchIpData()
+  }
+  if (e.code === 13) {
     fetchIpData()
   }
 })
@@ -28,7 +29,7 @@ function setSearchUrl() {
 }
 
 function handleError() {
-  const errorMsg = `<p>could not load</p>`
+  const errorMsg = `<p>try again</p>`
   display.className = "info-display-error"
   display.innerHTML = errorMsg
 }
