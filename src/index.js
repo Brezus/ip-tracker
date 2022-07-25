@@ -16,11 +16,11 @@ searchBox.addEventListener("keydown", (e) => {
     fetchIpData()
   }
 })
-document.addEventListener("DOMContentLoaded", () => {
-  searchBox.value = ""
-  searchBox.focus()
-  fetchIpData()
-})
+// document.addEventListener("DOMContentLoaded", () => {
+//   searchBox.value = ""
+//   searchBox.focus()
+//   fetchIpData()
+// })
 function setSearchUrl() {
   const searchStr = searchBox.value.split(".").join("")
   searchUrl = !isNaN(searchStr)
@@ -29,7 +29,7 @@ function setSearchUrl() {
 }
 
 function handleError() {
-  const errorMsg = `<p>try again</p>`
+  const errorMsg = `<p>Error Try again?</p>`
   display.className = "info-display-error"
   display.innerHTML = errorMsg
 }
@@ -48,7 +48,6 @@ function fetchIpData() {
 }
 
 function displayIpInfo(ipData) {
-  console.log(ipData)
   const locationInfo = `${ipData.location.region}, ${ipData.location.country} ${
     ipData.location.postalCode ? ipData.location.postalCode : "N/A"
   }`
@@ -60,7 +59,6 @@ function displayIpInfo(ipData) {
   ]
   display.className = "info-display"
   display.innerHTML = getDisplayDivInnerHtml(ipInfo).join("")
-  console.log(getDisplayDivInnerHtml(ipInfo).join(""))
   const lat = ipData.location.lat
   const lng = ipData.location.lng
   map.flyTo(new L.LatLng(lat, lng), zoomLevel)
