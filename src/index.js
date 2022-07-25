@@ -16,11 +16,11 @@ searchBox.addEventListener("keydown", (e) => {
     fetchIpData()
   }
 })
-// document.addEventListener("DOMContentLoaded", () => {
-//   searchBox.value = ""
-//   searchBox.focus()
-//   fetchIpData()
-// })
+document.addEventListener("DOMContentLoaded", () => {
+  searchBox.value = ""
+  searchBox.focus()
+  fetchIpData()
+})
 function setSearchUrl() {
   const searchStr = searchBox.value.split(".").join("")
   searchUrl = !isNaN(searchStr)
