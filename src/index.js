@@ -11,6 +11,9 @@ searchBox.addEventListener("keydown", (e) => {
   if (e.code === "Enter") {
     fetchIpData()
   }
+  if (e.code === 13) {
+    fetchIpData()
+  }
 })
 document.addEventListener("DOMContentLoaded", () => {
   searchBox.value = ""
@@ -74,6 +77,7 @@ function getDisplayDivInnerHtml(ipInfo) {
   return displayDivInnerHtml
 }
 submitButton.addEventListener("click", () => {
+  setSearchUrl()
   fetchIpData()
   searchBox.value = ""
 })
