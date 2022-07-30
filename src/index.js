@@ -1,11 +1,13 @@
+import config from "../config.js"
+let secretkey = config.API_KEY
+
 const searchBox = document.getElementById("ipTrackr")
 const submitButton = document.getElementById("submit")
 const display = document.querySelector(".info-display")
 const zoomLevel = 14
-let domainSearch = `https://geo.ipify.org/api/v2/country,city?apiKey=at_tGIM4mr6wNkpg4sO5zJAE7WJyI8mF&domain=`
-let ipSearch = `https://geo.ipify.org/api/v2/country,city?apiKey=at_tGIM4mr6wNkpg4sO5zJAE7WJyI8mF&ipAddress=`
-let searchUrl =
-  "https://geo.ipify.org/api/v2/country,city?apiKey=at_tGIM4mr6wNkpg4sO5zJAE7WJyI8mF&ipAddress=192.212.174.101"
+let domainSearch = `https://geo.ipify.org/api/v2/country,city?apiKey=${secretkey}F&domain=`
+let ipSearch = `https://geo.ipify.org/api/v2/country,city?apiKey=${secretkey}F&ipAddress=`
+let searchUrl = `https://geo.ipify.org/api/v2/country,city?apiKey=${secretkey}F&ipAddress=192.212.174.101`
 
 searchBox.addEventListener("keydown", (e) => {
   setSearchUrl()
@@ -16,11 +18,12 @@ searchBox.addEventListener("keydown", (e) => {
     fetchIpData()
   }
 })
-document.addEventListener("DOMContentLoaded", () => {
-  searchBox.value = ""
-  searchBox.focus()
-  fetchIpData()
-})
+// document.addEventListener("DOMContentLoaded", () => {
+//   searchBox.value = ""
+//   searchBox.focus()
+//   fetchIpData()
+// })
+
 function setSearchUrl() {
   const searchStr = searchBox.value.split(".").join("")
   searchUrl = !isNaN(searchStr)
