@@ -1,0 +1,25 @@
+{
+  "name": "iptracker",
+  "version": "1.0.0",
+  "description": "trying to use a package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Brezus/ip-tracker.git"
+  },
+  "keywords": [
+    "idk"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Brezus/ip-tracker/issues"
+  },
+  "homepage": "https://github.com/Brezus/ip-tracker#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1"
+  }
+}
